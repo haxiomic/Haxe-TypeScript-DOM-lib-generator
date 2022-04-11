@@ -12,6 +12,8 @@
     "worklet"
   ],
   "scripts": {
+    "dev-externs": "cd src/build && npx dts2hx ./types -o ../../src-haxe ",
+    "build-haxe": "tsc && haxe build.hxml && node ./lib/build-haxe.js",
     "build": "tsc && node ./lib/build.js",
     "fetch-comment": "tsc && node ./lib/fetch-comment.js",
     "fetch-mdn": "npm run build && node ./lib/fetch-mdn.js",
@@ -52,6 +54,7 @@
     "bcd-idl-mapper": "^1.4.1",
     "cpx2": "^4.2.0",
     "danger": "^11.0.2",
+    "dts2hx": "^0.18.1",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",

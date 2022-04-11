@@ -1,0 +1,13 @@
+package types;
+
+typedef Typed = {
+	var type : ts.AnyOf2<String, Array<Typed>>;
+	@:optional
+	var subtype : ts.AnyOf2<Typed, Array<Typed>>;
+	@:optional
+	var nullable : Bool;
+	@:optional
+	var overrideType : String;
+	@:optional
+	var additionalTypes : Array<String>;
+};

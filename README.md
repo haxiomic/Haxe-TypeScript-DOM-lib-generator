@@ -1,3 +1,28 @@
+# Haxe Externs Fork of TypeScript DOM generator
+
+**Project does not yet work, just breaking ground!**
+
+TypeScript's DOM lib generator is a benchmark quality browser API type definitions.
+This project seeks to extend this generator to emit haxe externs. It tries to make as minimal changes as possible to the source project so that merging in upstream changes has minimal overhead.
+
+```bash
+npm install
+npm run build-haxe
+```
+
+## List of changes made
+**src/build.ts**
+- export `emitDom()`
+- modify `emitDom()` to return `Promise<WebIdl>`, rather than generating .d.ts files
+
+**package.json**
+Added 2 new scripts:
+- `build-haxe`, which compiles the project and runs the haxe generator
+- `dev-externs`, which uses [dts2hx](https://github.com/haxiomic/dts2hx) to generate externs for the [`WebIdl`](src/build/types.d.ts#L234) structure defined in [types.d.ts](src/build/types.d.ts)
+- added dts2hx as a dev dependency
+
+----
+
 # TypeScript and JavaScript lib generator
 
 This tool is used to generate the web-based `lib.dom.d.ts` file which is included with TypeScript releases, and as the `@types/web` package.
