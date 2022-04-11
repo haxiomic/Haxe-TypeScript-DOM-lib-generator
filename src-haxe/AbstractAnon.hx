@@ -241,7 +241,7 @@ typedef Example<T, Q> = {
 	@:optional
 	var enums: {
 		@:native("enum")
-		var enum_: { };
+		var enum_: haxe.DynamicAccess<Int>;
 	};
 
 	@:optional
@@ -269,7 +269,7 @@ function test() {
 			example: "forty-two"
 		},
 		enums: {
-			"enum": {},
+			"enum": { a: 4 },
 		},
 		"nested-native": {
 			{
@@ -280,6 +280,7 @@ function test() {
 
 	var z: AbstractAnon<Example<Int, String>> = cast x;
 
+
 	trace(z.field);
 	trace(z.nested);
 	trace(z.nested.field);
@@ -289,5 +290,6 @@ function test() {
 
 	trace(z.enums);
 	trace(z.enums.enum_);
+	trace(z.enums.enum_.get('a'));
 }
 #end
