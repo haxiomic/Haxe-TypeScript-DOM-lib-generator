@@ -6,6 +6,6 @@ typedef Iterator_ = {
 	var type : Array<Typed>;
 	@:optional
 	var comments : {
-		var comment : { };
+		var comment : haxe.DynamicAccess<String>;
 	};
 };

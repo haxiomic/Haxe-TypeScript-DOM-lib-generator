@@ -6,7 +6,7 @@ typedef Dictionary = {
 	@:native("extends")
 	var extends_ : String;
 	var members : {
-		var member : { };
+		var member : haxe.DynamicAccess<Member>;
 	};
 	@:optional
 	var overrideIndexSignatures : Array<String>;

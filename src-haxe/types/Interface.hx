@@ -11,10 +11,10 @@ typedef Interface = {
 	var comment : String;
 	@:optional
 	var constants : {
-		var constant : { };
+		var constant : haxe.DynamicAccess<Constant>;
 	};
 	var methods : {
-		var method : { };
+		var method : haxe.DynamicAccess<Method>;
 	};
 	@:optional
 	var events : {
@@ -26,9 +26,9 @@ typedef Interface = {
 	};
 	@:optional
 	var properties : {
-		var property : { };
+		var property : haxe.DynamicAccess<Property>;
 		@:optional
-		var namesakes : { };
+		var namesakes : haxe.DynamicAccess<Array<Property>>;
 	};
 	@:optional
 	var constructor : Constructor;
