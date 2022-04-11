@@ -85,16 +85,29 @@ class AbstractAnon {
 		}
 	}
 
+	@:persistent static var checkedTypes = new Map<String, Bool>();
 	static function hasNativeFields(anon: AnonType) {
 		for (field in anon.fields) {
 			if (field.meta.has(':native')) {
 				return true;
 			}
+			
 			// check if field's type is anon with native fields
 			var isAnonWithNative = switch Context.follow(field.type) {
-				case TAnonymous(nestedAnon): hasNativeFields(nestedAnon.get());
+				case TAnonymous(nestedAnon):
+					var typeKey = new Printer().printComplexType(Context.toComplexType(field.type));
+
+					if (!checkedTypes.exists(typeKey)) {
+						checkedTypes.set(typeKey, true); // set to false initially to avoid recursion
+						var has = hasNativeFields(nestedAnon.get());
+						checkedTypes.set(typeKey, has); // update now we have result
+						has;
+					} else {
+						checkedTypes.get(typeKey);
+					}
 				default: false;
 			}
+
 			if (isAnonWithNative) {
 				return true;
 			}
@@ -228,6 +241,10 @@ class AbstractAnon {
 
 // test
 #if (!macro && test)
+
+typedef Recursive = {
+	f: Recursive
+}
 typedef Example<T, Q> = {
 	@:native("example")
 	var field: T;
@@ -258,6 +275,8 @@ typedef Example<T, Q> = {
 
 	@:native('recursive')
 	var recursive: Example<T, Q>;
+
+	var recursive2: Recursive;
 }
 
 typedef FixedExample<T, Q> = AbstractAnon<Example<T, Q>>;
