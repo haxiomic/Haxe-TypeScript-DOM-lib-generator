@@ -17,8 +17,8 @@ npm run haxe-run
 
 ## List of changes made
 **src/build.ts**
-- export `emitDom()`
-- modify `emitDom()` to return `Promise<WebIdl>`, rather than generating .d.ts files
+- [export `emitDom()`](https://github.com/haxiomic/Haxe-TypeScript-DOM-lib-generator/commit/e9d26e5b67aec58cb7fb9cb733e9daa130c33a66)
+- [modify `emitDom()` to return `Promise<WebIdl>`, rather than generating .d.ts files](https://github.com/haxiomic/Haxe-TypeScript-DOM-lib-generator/commit/e9d26e5b67aec58cb7fb9cb733e9daa130c33a66)
 
 **package.json**
 Added 2 new scripts:
