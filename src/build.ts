@@ -55,7 +55,7 @@ async function emitFlavor(
   );
 }
 
-async function emitDom() {
+export async function emitDom() {
   const inputFolder = new URL("../inputfiles/", import.meta.url);
   const outputFolder = new URL("../generated/", import.meta.url);
 
@@ -245,6 +245,10 @@ async function emitDom() {
 
   const knownTypes = await readInputJSON("knownTypes.json");
 
+  // @! haxe extern generator addition
+  //    return webidl structure rather than generate files
+  return webidl;
+
   emitFlavor(webidl, new Set(knownTypes.Window), {
     name: "dom",
     global: ["Window"],
@@ -322,4 +326,6 @@ async function emitDom() {
   }
 }
 
-await emitDom();
+// @! haxe extern generator addition:
+//    disable default behavior
+// await emitDom();
