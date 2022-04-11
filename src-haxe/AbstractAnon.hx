@@ -35,7 +35,6 @@ class AbstractAnon {
 	static function patchType(targetTypeRaw: Type) {
 		var targetType = unwrapNull(targetTypeRaw); // not null
 		var isNullable = targetType != targetTypeRaw;
-		trace('patch type ${isNullable ? '?' : ''}${targetType}');
 
 		var anon = switch targetType {
 			case _ => Context.follow(_) => TAnonymous(anon): anon.get();
@@ -208,7 +207,7 @@ class AbstractAnon {
 		}
 
 		#if test
-		trace(new haxe.macro.Printer().printTypeDefinition(typeDefinition));
+		// trace(new haxe.macro.Printer().printTypeDefinition(typeDefinition));
 		#end
 
 		Context.defineType(typeDefinition);
