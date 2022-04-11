@@ -54,7 +54,7 @@
     "bcd-idl-mapper": "^1.4.1",
     "cpx2": "^4.2.0",
     "danger": "^11.0.2",
-    "dts2hx": "^0.18.1",
+    "dts2hx": "^0.19.0",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
