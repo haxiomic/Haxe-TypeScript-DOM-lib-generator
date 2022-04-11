@@ -15,7 +15,11 @@ function main() {
 }
 
 function generateDomExterns(webidl: WebIdl) {
-	trace(webidl);
+	var webidl: AbstractAnon<WebIdl> = webidl;
+
+	for (e in webidl.enums.enum_) {
+		Console.examine('Enum', e.name, e.value);
+	}
 }
 
 @:native("import")
