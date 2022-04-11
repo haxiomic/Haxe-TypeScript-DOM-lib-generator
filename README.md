@@ -7,7 +7,12 @@ This project seeks to extend this generator to emit haxe externs. It tries to ma
 
 ```bash
 npm install
-npm run build-haxe
+
+# compile ts code so we can use it from haxe 
+npm run build 
+
+# compile and run haxe generator
+npm run haxe-run
 ```
 
 ## List of changes made
@@ -17,8 +22,8 @@ npm run build-haxe
 
 **package.json**
 Added 2 new scripts:
-- `build-haxe`, which compiles the project and runs the haxe generator
-- `dev-externs`, which uses [dts2hx](https://github.com/haxiomic/dts2hx) to generate externs for the [`WebIdl`](src/build/types.d.ts#L234) structure defined in [types.d.ts](src/build/types.d.ts)
+- `haxe-run`, which compiles the project and runs the haxe generator
+- `haxe-dev-externs`, which uses [dts2hx](https://github.com/haxiomic/dts2hx) to generate externs for the [`WebIdl`](src/build/types.d.ts#L234) structure defined in [types.d.ts](src/build/types.d.ts)
 - added dts2hx as a dev dependency
 
 ----

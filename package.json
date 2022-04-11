@@ -12,8 +12,8 @@
     "worklet"
   ],
   "scripts": {
-    "dev-externs": "cd src/build && npx dts2hx ./types -o ../../src-haxe ",
-    "build-haxe": "tsc && haxe build.hxml && node ./lib/build-haxe.js",
+    "haxe-dev-externs": "cd src/build && npx dts2hx ./types -o ../../src-haxe ",
+    "haxe-run": "haxe build.hxml && node ./lib/haxe-generate.js",
     "build": "tsc && node ./lib/build.js",
     "fetch-comment": "tsc && node ./lib/fetch-comment.js",
     "fetch-mdn": "npm run build && node ./lib/fetch-mdn.js",
