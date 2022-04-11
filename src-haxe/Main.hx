@@ -31,29 +31,29 @@ function generateDomExterns(webidl: WebIdl) {
 		}
 	}
 
-	Console.log('<b,cyan>enums</b>');
+	Console.log('<b,cyan>enums</b> (${webidl.enums.enum_.keys().length})');
 	preview(webidl.enums.enum_);
 
-	Console.log('<b,green>callbackFunctions</b>');
+	Console.log('<b,green>callbackFunctions</b> (${webidl.callbackFunctions.callbackFunction.keys().length})');
 	preview(webidl.callbackFunctions.callbackFunction);
 
-	Console.log('<b,magenta>callbackInterfaces</b>');
+	Console.log('<b,magenta>callbackInterfaces</b> (${webidl.callbackInterfaces.interface_.keys().length})');
 	preview(webidl.callbackInterfaces.interface_);
 
-	Console.log('<b,red>dictionaries</b>');
+	Console.log('<b,red>dictionaries</b> (${webidl.dictionaries.dictionary.keys().length})');
 	preview(webidl.dictionaries.dictionary);
 
-	Console.log('<b,blue>interfaces</b>');
+	Console.log('<b,blue>interfaces</b> (${webidl.interfaces.interface_.keys().length})');
 	preview(webidl.interfaces.interface_);
 
-	Console.log('<b,#FF337D>mixins</b>');
+	Console.log('<b,#FF337D>mixins</b> (${webidl.mixins.mixin.keys().length})');
 	preview(webidl.mixins.mixin);
 
-	Console.log('<b,#FFA500>namespaces</b>');
+	Console.log('<b,#FFA500>namespaces</b> (${webidl.namespaces.length})');
 	preview(cast webidl.namespaces);
 
-	Console.log('<b,#33FF64>typedefs</b>');
-	preview(cast webidl.typedefs);
+	Console.log('<b,#33FF64>typedefs</b> (${webidl.typedefs.typedef_.length})');
+	preview(cast webidl.typedefs.typedef_);
 }
 
 @:native("import")
