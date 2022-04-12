@@ -4,6 +4,7 @@
  * using haxe 4.2.4
  **/
 
+import haxe.macro.Expr.TypePath;
 import haxe.io.Path;
 import haxe.DynamicAccess;
 import haxe.macro.Expr.TypeDefinition;
@@ -68,6 +69,15 @@ function generateDomExterns(webidl: WebIdl) {
 	}
 
 	writeFiles(hxTypes);
+
+	Console.log('<light_green>Saved files to <b>${outputDir}/</></light_green>');
+}
+
+function generateTypePath(def: {name: String}): TypePath {
+	return {
+		name: def.name,
+		pack: jsDomPack,
+	}
 }
 
 function generateEnum(e: Enum_) {
@@ -79,9 +89,11 @@ function generateEnum(e: Enum_) {
 		}
 	}
 
+	var typePath = generateTypePath(e);
+
 	var hxType: TypeDefinition = {
-		name: e.name,
-		pack: jsDomPack,
+		name: typePath.name,
+		pack: typePath.pack,
 		kind: TDAbstract(macro :String),
 		fields: [for (value in e.value) {
 			name: enumFieldName(value),
