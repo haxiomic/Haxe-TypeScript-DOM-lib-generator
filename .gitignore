@@ -286,3 +286,5 @@ inputfiles/browser.webidl.json
 yarn.lock
 TypeScript
 deploy/generated
+
+haxe-generated/

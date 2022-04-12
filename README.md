@@ -26,6 +26,9 @@ Added 2 new scripts:
 - `haxe-dev-externs`, which uses [dts2hx](https://github.com/haxiomic/dts2hx) to generate externs for the [`WebIdl`](src/build/types.d.ts#L234) structure defined in [types.d.ts](src/build/types.d.ts)
 - added dts2hx as a dev dependency
 
+**.gitignore**
+- add haxe-generated/
+
 ----
 
 # TypeScript and JavaScript lib generator
