@@ -127,9 +127,10 @@ class Printer extends haxe.macro.Printer {
 		- Switch to using printFieldBlock
 	**/
 	public override function printTypeDefinition(t:TypeDefinition, printPackage = true):String {
+		var filteredMeta = t.meta.filter(m -> m.name != ":enum");
 		var str = t == null ? "#NULL" : (printPackage && t.pack.length > 0 && t.pack[0] != "" ? "package " + t.pack.join(".") + ";\n\n" : "")
 			+ (t.doc != null && t.doc != "" ? "/**\n" + tabString + StringTools.replace(t.doc, "\n", "\n" + tabString) + "\n**/\n" : "")
-			+ (t.meta != null && t.meta.length > 0 ? t.meta.map(printMetadata).join(" ") + " " : "")
+			+ (filteredMeta != null && filteredMeta.length > 0 ? filteredMeta.map(printMetadata).join(" ") + " " : "")
 			+ (t.isExtern ? "extern " : "")
 			+ switch (t.kind) {
 				case TDEnum:
@@ -165,7 +166,8 @@ class Printer extends haxe.macro.Printer {
 					})
 					+ ";";
 				case TDAbstract(tthis, from, to):
-					"abstract "
+					(t.meta.find(m -> m.name == ':enum') != null ? "enum " : "")
+					+ "abstract "
 					+ t.name
 					+ ((t.params != null && t.params.length > 0) ? "<" + t.params.map(printTypeParamDecl).join(", ") + ">" : "")
 					+ (tthis == null ? "" : "(" + printComplexType(tthis) + ")")
