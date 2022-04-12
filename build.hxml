@@ -1,4 +1,7 @@
 --main Main
+# allow access to dts2hx code
+--class-path node_modules/dts2hx/src
 --class-path src-haxe
+
 --dce full
 --js lib/haxe-generate.js
