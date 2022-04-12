@@ -4,8 +4,15 @@
  * using haxe 4.2.4
  **/
 
+import haxe.io.Path;
 import haxe.DynamicAccess;
+import haxe.macro.Expr.TypeDefinition;
+import tool.HaxeTools;
+import types.Enum_;
 import types.WebIdl;
+
+final jsDomPack = ['js', 'dom'];
+final outputDir = 'haxe-generated';
 
 function main() {
 	trace("Haxe DOM extern generator");
@@ -54,6 +61,52 @@ function generateDomExterns(webidl: WebIdl) {
 
 	Console.log('<b,#33FF64>typedefs</b> (${webidl.typedefs.typedef_.length})');
 	preview(cast webidl.typedefs.typedef_);
+
+	var printer = new Printer();
+	var hxTypes = new Array<TypeDefinition>();
+	for (e in webidl.enums.enum_) {
+		hxTypes.push(generateEnum(e));
+	}
+
+	writeFiles(hxTypes);
+}
+
+function generateEnum(e: Enum_) {
+	function enumFieldName(value: String) {
+		return if (value == "") {
+			"NONE";
+		} else {
+			HaxeTools.toSafeIdent(value).toUpperCase();
+		}
+	}
+
+	var hxType: TypeDefinition = {
+		name: e.name,
+		pack: jsDomPack,
+		kind: TDAbstract(macro :String),
+		fields: [for (value in e.value) {
+			name: enumFieldName(value),
+			kind: FVar(null, {expr: EConst(CString(value)), pos: null}),
+			pos: null,
+		}],
+		pos: null,
+	};
+
+	return hxType;
+}
+
+function writeFiles(hxTypes: Array<TypeDefinition>) {
+	var printer = new Printer();
+	dynamicImport("fs").then(fs -> {
+		for (hxType in hxTypes) {
+			var path = Path.join([outputDir].concat(hxType.pack.concat([hxType.name + '.hx'])));
+			var dir = Path.directory(path);
+			fs.mkdirSync(dir, { recursive: true });
+
+			var str = printer.printTypeDefinition(hxType);
+			fs.writeFileSync(path, str);
+		}
+	});
 }
 
 @:native("import")
