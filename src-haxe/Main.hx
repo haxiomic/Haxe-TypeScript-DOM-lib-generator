@@ -89,6 +89,7 @@ function generateEnum(e: Enum_) {
 			kind: FVar(null, {expr: EConst(CString(value)), pos: null}),
 			pos: null,
 		}],
+		meta: [{name: ":enum", pos: null}],
 		pos: null,
 	};
 
