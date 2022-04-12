@@ -62,7 +62,6 @@ function generateDomExterns(webidl: WebIdl) {
 	Console.log('<b,#33FF64>typedefs</b> (${webidl.typedefs.typedef_.length})');
 	preview(cast webidl.typedefs.typedef_);
 
-	var printer = new Printer();
 	var hxTypes = new Array<TypeDefinition>();
 	for (e in webidl.enums.enum_) {
 		hxTypes.push(generateEnum(e));
