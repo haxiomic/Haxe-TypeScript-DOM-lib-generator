@@ -15,6 +15,9 @@ npm run build
 npm run haxe-run
 ```
 
+## Todo
+- Type mapping so we can handle references to generated types (best to use a two pass approach like dts2hx)
+
 ## List of changes made
 **src/build.ts**
 - [export `emitDom()`](https://github.com/haxiomic/Haxe-TypeScript-DOM-lib-generator/commit/e9d26e5b67aec58cb7fb9cb733e9daa130c33a66)
