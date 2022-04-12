@@ -2,7 +2,7 @@
 
 **Project does not yet work, just breaking ground!**
 
-TypeScript's DOM lib generator is a benchmark quality browser API type definitions.
+TypeScript's DOM lib generator is a benchmark for quality in browser API type definitions.
 This project seeks to extend this generator to emit haxe externs. It tries to make as minimal changes as possible to the source project so that merging in upstream changes has minimal overhead.
 
 ```bash
